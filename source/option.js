@@ -12,6 +12,8 @@ var ignore = [
   "Backspace",
   "CapsLock",
   "Escape",
+  "ENTER",
+  " ",
 ];
 window.onload = function () {
   text = document.querySelector("#text");
