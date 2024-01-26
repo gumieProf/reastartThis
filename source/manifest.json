@@ -1,0 +1,23 @@
+{
+	"name": "Restart this",
+	"version": "1.0.0",
+	"description": "An awesome new browser extension",
+	"manifest_version": 3,
+	"minimum_chrome_version": "100",
+	"icons": {
+		"128": "icon.png"
+	},
+	"permissions": [
+		"tabs",
+    "activeTab",
+    "contextMenus",
+	"storage"
+	],
+	"options_page": "option.html",
+	"content_scripts": [
+		{
+			"matches": ["https://*.youtube.com/*"],
+			"js": [ "content.js" ]
+		}
+	]
+}
