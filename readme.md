@@ -1,5 +1,7 @@
 # restart This
 
+[日本語](https://github.com/gumieProf/restartThis/blob/main/README_JP.md)
+
 Are you frustrated by **video restarts**?
 
 With this Chrome extension, you can free yourself from such stress.

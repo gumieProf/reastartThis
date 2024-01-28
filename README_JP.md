@@ -1,5 +1,7 @@
 # restart This
 
+[ENGLISH](https://github.com/gumieProf/restartThis/blob/main/readme.md)
+
 あなたは**動画のリスタート**に**イライラ**してませんか？
 
 この Chrome 拡張機能を使えば、**そんなストレス**から**解放**されます。

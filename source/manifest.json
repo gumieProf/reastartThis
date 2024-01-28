@@ -10,7 +10,6 @@
 	"permissions": [
 	"tabs",
     "activeTab",
-    "contextMenus",
 	"storage"
 	],
 	"options_page": "option.html",
