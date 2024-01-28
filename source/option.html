@@ -4,16 +4,47 @@
     <meta charset="UTF-8" />
     <title>Restart this options</title>
     <script src="option.js"></script>
+    <style>
+      body {
+        text-align: center;
+      }
+      body > * {
+        text-align: center;
+      }
+      p {
+        font-size: 10px;
+      }
+      h1 {
+        font-size: 90px;
+      }
+      h3 {
+        font-size: 30px;
+      }
+      p {
+        font-size: 20px;
+      }
+      a {
+        text-decoration: none;
+        font-size: 50px;
+        text-align: center;
+        border: solid black 5px;
+        border-radius: 10px;
+        background: white;
+      }
+      a:visited {
+        color: black;
+      }
+    </style>
   </head>
   <body>
-    <h3>Restart this options</h3>
+    <h1>Restart this options</h1>
     <br />
-    <h4>Restart key</h4>
+    <h3>Restart key</h3>
     <p>
       Clicking on the video while holding this down will play it from the
       beginning.
     </p>
-    <strong>Seted key</strong>
-    <input type="text" id="text" disabled value=" " />
+    <h1 id="seted"></h1>
+    <a href="#" id="record">Record</a>
   </body>
 </html>

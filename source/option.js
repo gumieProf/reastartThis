@@ -1,4 +1,5 @@
 var text;
+var btn;
 var ignore = [
   "Meta",
   "Ctrl",
@@ -16,14 +17,24 @@ var ignore = [
   " ",
 ];
 window.onload = function () {
-  text = document.querySelector("#text");
+  btn = document.querySelector("#record");
+  text = document.querySelector("#seted");
   chrome.storage.local.get({ key: "R" }, function (items) {
-    text.value = items.key;
+    text.innerHTML = items.key.toUpperCase();
   });
-  window.addEventListener("keydown", function (e) {
+  function setKey(e) {
     if (!ignore.includes(e.key)) {
-      text.value = e.key.toUpperCase();
+      text.innerHTML = e.key.toUpperCase();
       chrome.storage.local.set({ key: e.key });
+      window.removeEventListener("keydown", setKey, true);
+      btn.style.background = "white";
+      btn.style.color = "black";
     }
+  }
+  btn.addEventListener("click", function () {
+    window.addEventListener("keydown", setKey, true);
+    btn.style.background = "red";
+    btn.style.color = "white";
+    return false;
   });
 };
