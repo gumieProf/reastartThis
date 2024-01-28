@@ -44,13 +44,13 @@ var ignore = [
 window.onload = function () {
   btn = document.querySelector("#record");
   text = document.querySelector("#seted");
-  chrome.storage.local.get({ key: "R" }, function (items) {
+  chrome.storage.sync.get({ key: "R" }, function (items) {
     text.innerHTML = items.key.toUpperCase();
   });
   function setKey(e) {
     if (!ignore.includes(e.key)) {
       text.innerHTML = e.key.toUpperCase();
-      chrome.storage.local.set({ key: e.key });
+      chrome.storage.sync.set({ key: e.key });
       window.removeEventListener("keydown", setKey, true);
       btn.style.background = "white";
       btn.style.color = "black";

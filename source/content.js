@@ -21,16 +21,20 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-
-window.onload = function () {
-  var onkey = false;
-  var videos;
-  var onshift = false;
-  var onctrl = false;
-  var isopen = false;
-  chrome.storage.local.get("key", function (items) {
-    window.addEventListener("keydown", function (e) {
-      if (e.key === items.key) {
+var key;
+var onkey = false;
+var videos;
+var onshift = false;
+var onctrl = false;
+var isopen = false;
+async function load() {
+  key = (await chrome.storage.sync.get("key"))["key"];
+  console.log(key);
+}
+document.onload = function () {
+  window.addEventListener("keydown", function (e) {
+    if (key) {
+      if (e.key.toUpperCase() === key) {
         onkey = true;
       } else {
         onkey = false;
@@ -45,42 +49,43 @@ window.onload = function () {
       } else {
         onshift = false;
       }
-      return false;
-    });
-    window.addEventListener("keyup", function () {
-      onkey = false;
-      onshift = false;
-      onctrl = false;
-      return false;
-    });
-    window.onblur(function () {
-      isopen = false;
-    });
-    new MutationObserver(function () {
-      var added = [];
-      videos = document.querySelectorAll("a[href^='/watch?v=']");
-      videos.forEach((elem) => {
-        var href = elem.getAttribute("href");
-        if (!added.includes(elem) && href.match(/&t=[0-9]/)) {
-          added.push(elem);
-          elem.addEventListener("click", function (e) {
-            var link = href.substring(0, href.indexOf("&t="));
-            if (onkey === true) {
-              e.stopPropagation();
-              if (onctrl === true && isopen === false) {
-                window.open(link, "_blank");
-                isopen = true;
-              } else if (onshift === true && isopen === false) {
-                window.open(link);
-                isopen = true;
-              } else {
-                location.replace(link);
-              }
-            }
-            return false;
-          });
-        }
-      });
-    }).observe(document.body, { childList: true });
+    }
+    return false;
   });
+  window.addEventListener("keyup", function () {
+    onkey = false;
+    onshift = false;
+    onctrl = false;
+    return false;
+  });
+  window.addEventListener("blur", function () {
+    isopen = false;
+  });
+  function watch() {
+    videos = document.querySelectorAll("a[href^='/watch?v=']");
+    videos.forEach((elem) => {
+      var href = elem.getAttribute("href");
+      elem.addEventListener("click", function (e) {
+        var link = href.substring(0, href.indexOf("&t="));
+        if (onkey === true) {
+          e.stopPropagation();
+          if (onctrl === true && isopen === false) {
+            window.open(link, "_blank");
+            isopen = true;
+          } else if (onshift === true && isopen === false) {
+            window.open(link);
+            isopen = true;
+          } else {
+            location.replace(link);
+            location.reload();
+          }
+        }
+        return false;
+      });
+    });
+  }
+  new MutationObserver(function () {
+    load().then(watch());
+  }).observe(document.body, { childList: true });
+  watch();
 };
