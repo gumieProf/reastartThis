@@ -24,7 +24,7 @@ With this Chrome extension, you can free yourself from such stress.
 
 Clicking on a video in the middle of **restart** on the **YouTube site** while holding down the **R key** will play it from the beginning.
 
-Call it **the restart key**.
+The key that is pressed at the same time as the click is called the **"restart key"**.
 
 And, You can use the **CTRL/COMMAND** key to open in a **new tab**, and the **SHIFT key** to open in a **new window**.
 
@@ -46,6 +46,12 @@ Also, **these keys** cannot be set as **the restart key** because they depend on
 - Arrows
 - Win
 - Eisu/Kana
+
+## Features to be implemented
+
+- Restart in the video page
+
+- Visualization of restart availability
 
 ## Licensing
 
